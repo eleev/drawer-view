@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A95CFFAD21AC36CD008B0E8E /* drawer_view.h in Headers */ = {isa = PBXBuildFile; fileRef = A95CFFAB21AC36CD008B0E8E /* drawer_view.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */; };
+		A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB521AC3706008B0E8E /* DrawerView.swift */; };
+		A95CFFB821AC372F008B0E8E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A95CFFB721AC372F008B0E8E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A95CFFA821AC36CD008B0E8E /* drawer_view.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = drawer_view.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95CFFAB21AC36CD008B0E8E /* drawer_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawer_view.h; sourceTree = "<group>"; };
 		A95CFFAC21AC36CD008B0E8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediatePanGestureRecognizer.swift; sourceTree = "<group>"; };
+		A95CFFB521AC3706008B0E8E /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
+		A95CFFB721AC372F008B0E8E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +36,7 @@
 		A95CFF9E21AC36CD008B0E8E = {
 			isa = PBXGroup;
 			children = (
+				A95CFFB721AC372F008B0E8E /* .gitignore */,
 				A95CFFAA21AC36CD008B0E8E /* drawer-view */,
 				A95CFFA921AC36CD008B0E8E /* Products */,
 			);
@@ -48,6 +55,8 @@
 			children = (
 				A95CFFAB21AC36CD008B0E8E /* drawer_view.h */,
 				A95CFFAC21AC36CD008B0E8E /* Info.plist */,
+				A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */,
+				A95CFFB521AC3706008B0E8E /* DrawerView.swift */,
 			);
 			path = "drawer-view";
 			sourceTree = "<group>";
@@ -95,6 +104,7 @@
 				TargetAttributes = {
 					A95CFFA721AC36CD008B0E8E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -120,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95CFFB821AC372F008B0E8E /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */,
+				A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +274,7 @@
 		A95CFFB121AC36CD008B0E8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -269,6 +283,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "drawer-view/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -277,6 +292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "eleev.astemir.drawer-view";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +301,7 @@
 		A95CFFB221AC36CD008B0E8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -293,6 +310,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "drawer-view/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
