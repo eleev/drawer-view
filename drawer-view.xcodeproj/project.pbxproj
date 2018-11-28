@@ -11,6 +11,8 @@
 		A917125A21AEC0F30091AFF5 /* LineArrowShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */; };
 		A917125C21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */; };
 		A917125E21AEC1450091AFF5 /* DrawerView.State+Opposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */; };
+		A917126021AED9830091AFF5 /* DefaultTitleLabelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125F21AED9830091AFF5 /* DefaultTitleLabelAnimator.swift */; };
+		A917126221AEEA490091AFF5 /* TitleLabelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917126121AEEA490091AFF5 /* TitleLabelAnimator.swift */; };
 		A95CFFAD21AC36CD008B0E8E /* drawer_view.h in Headers */ = {isa = PBXBuildFile; fileRef = A95CFFAB21AC36CD008B0E8E /* drawer_view.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */; };
 		A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB521AC3706008B0E8E /* DrawerView.swift */; };
@@ -26,6 +28,8 @@
 		A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineArrowShapeLayer.swift; sourceTree = "<group>"; };
 		A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerView.BlurStyle+Convert.swift"; sourceTree = "<group>"; };
 		A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerView.State+Opposite.swift"; sourceTree = "<group>"; };
+		A917125F21AED9830091AFF5 /* DefaultTitleLabelAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTitleLabelAnimator.swift; sourceTree = "<group>"; };
+		A917126121AEEA490091AFF5 /* TitleLabelAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabelAnimator.swift; sourceTree = "<group>"; };
 		A95CFFA821AC36CD008B0E8E /* drawer_view.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = drawer_view.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95CFFAB21AC36CD008B0E8E /* drawer_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawer_view.h; sourceTree = "<group>"; };
 		A95CFFAC21AC36CD008B0E8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,9 +98,11 @@
 				A95CFFAC21AC36CD008B0E8E /* Info.plist */,
 				A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */,
 				A95CFFB521AC3706008B0E8E /* DrawerView.swift */,
-				A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */,
 				A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */,
 				A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */,
+				A917126121AEEA490091AFF5 /* TitleLabelAnimator.swift */,
+				A917125F21AED9830091AFF5 /* DefaultTitleLabelAnimator.swift */,
+				A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */,
 			);
 			path = "drawer-view";
 			sourceTree = "<group>";
@@ -227,9 +233,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A917126221AEEA490091AFF5 /* TitleLabelAnimator.swift in Sources */,
 				A917125A21AEC0F30091AFF5 /* LineArrowShapeLayer.swift in Sources */,
 				A917125C21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift in Sources */,
 				A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */,
+				A917126021AED9830091AFF5 /* DefaultTitleLabelAnimator.swift in Sources */,
 				A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */,
 				A917125E21AEC1450091AFF5 /* DrawerView.State+Opposite.swift in Sources */,
 			);
