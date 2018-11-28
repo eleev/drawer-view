@@ -8,10 +8,18 @@
 
 import UIKit
 
+
 // DrawerView UI Component. Intended to be a part of an another UIView and present additional view when needed. The view is not @IBDesignable since there is nothing to present (custom) in the interface builder. However, some properties are @IBInspectable, so you are able to adjust them at design time (in case if you use interface builder).
 public class DrawerView: UIView {
     
     // MARK: - Enum types
+
+    public enum BlurStyle {
+        case none
+        case extraLight
+        case light
+        case dark
+    }
     
     public enum State {
         case closed
@@ -23,11 +31,21 @@ public class DrawerView: UIView {
     public let bottomSpacing: CGFloat
     public let closedHeight: CGFloat
     public private(set) var visibleHeight: CGFloat
-    public let shouldBlurBackground: Bool
-    public let blurStyle: UIBlurEffect.Style
+    public let blurStyle: BlurStyle
     
+    public private(set) var currentState: State = .closed {
+        didSet {
+            hapticFeedback.impactOccurred()
+            onStateChangeClosure(currentState)
+        }
+    }
+    
+    /// The component will change its state when device is rotated to .closed if the component was in .open state
     @IBInspectable public var closeOnRotation                   = false
+    /// The component will change its state to .closed when child views are interacted
+    @IBInspectable public var closeOnChildViewTaps              = false
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
+    @IBInspectable public var animationDumpingRatio: CGFloat    = 1.0
     @IBInspectable public var cornerRadius: CGFloat             = 40.0
     @IBInspectable public var shadowOpacity: Float = 0.15 {
         didSet {
@@ -40,15 +58,34 @@ public class DrawerView: UIView {
         }
     }
     
-    public var animationClosure: (_ state: State) -> ()   = { _ in }
-    public var completionClosure: (_ state: State) -> ()  = { _ in  }
+    /// Use this close if you want to animate any other UIKit related component alongside with this component
+    public var animationClosure:        (_ state: State)->() = { _ in }
+    /// Use this cloure if you want to get animation completion callbacks
+    public var completionClosure:       (_ state: State)->() = { _ in }
+    /// Use this clossure if you want to get callbacks when State changes
+    public var onStateChangeClosure:    (_ state: State)->() = { _ in }
+    
+    public var titleLabelAnimator: TitleLabelAnimator? {
+        didSet {
+            guard let titleLabelAnimator = self.titleLabelAnimator else {
+                return
+            }
+            self.addSubview(titleLabelAnimator.openedTitleLabel)
+            self.addSubview(titleLabelAnimator.closedTitleLabel)
+            titleLabelAnimator.prepareLayoutConstraints()
+        }
+    }
     
     // MARK: - Private properties
     
     private var bottomConstraint            = NSLayoutConstraint()
     private var customHeightAnchor          = NSLayoutConstraint()
-    private var currentState: State         = .closed
+    
     private var sholdRecalculateConstraints = false
+    private let shouldBlurBackground: Bool
+    private lazy var hapticFeedback: UIImpactFeedbackGenerator = {
+        return UIImpactFeedbackGenerator(style: UIImpactFeedbackGenerator.FeedbackStyle.medium)
+    }()
     
     /// Holds all the running animators
     private var runningAnimators = [UIViewPropertyAnimator]()
@@ -56,45 +93,63 @@ public class DrawerView: UIView {
     /// Holds propgresses of each animator
     private var animationProgress = [CGFloat]()
     
-    private lazy var blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: blurStyle)
+    private lazy var blurEffectView: UIVisualEffectView? = {
+        guard let style = blurStyle.convert() else {
+            return nil
+        }
+        let blurEffect = UIBlurEffect(style: style)
         let effectView = UIVisualEffectView(effect: blurEffect)
         return effectView
     }()
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(drawerViewGestureRecognizerAction(recognizer:)))
+        recognizer.addTarget(self, action: #selector(drawerViewGestureTapped(recognizer:)))
         return recognizer
     }()
     
     private lazy var panGesture: ImmediatePanGestureRecognizer = {
         let recognizer = ImmediatePanGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(popupViewPanned(recognizer:)))
+        recognizer.addTarget(self, action: #selector(drawerViewGesturePanned(recognizer:)))
         return recognizer
     }()
     
+    // MARK: - Line Arrow Shape Layer
+    
+    private var lineArrowShapeLayer: LineArrowShapeLayer?
+    
+    
     // MARK: - Initializers
     
-    /// A designated initialier for DrawerView. Use initializer to create a new instnace of a DrawerView.
+    /// A designated initialier for DrawerView. Use initializer to create a new instnace of a DrawerView. Note that the view will add itself to the super view and must not do that manually. A typical use-case of this class it to instantiate a variable or property and optionally use closures to animate UIKit related contnet alongside with the DrawerView.
     public init(bottomSpacing: CGFloat = 100,
                 closedHeight: CGFloat = 80,
-                shouldBlurBackground: Bool = false,
-                blurStyle: UIBlurEffect.Style = .extraLight,
+                blurStyle: BlurStyle = .extraLight,
+                lineArrow: (height: CGFloat, width: CGFloat, color: UIColor)? = (8, 100, .lightGray),
                 superView: UIView) {
         
         self.bottomSpacing = bottomSpacing
         self.closedHeight = closedHeight
-        self.shouldBlurBackground = shouldBlurBackground
+        self.shouldBlurBackground = blurStyle != .none
         self.blurStyle = blurStyle
         self.visibleHeight = (superView.bounds.height - bottomSpacing) - closedHeight
         
         super.init(frame: .zero)
         
         superView.addSubview(self)
+        setupConstraints()
+        
+        if let lineArrow = lineArrow {
+            lineArrowShapeLayer = LineArrowShapeLayer(height: lineArrow.height,
+                                                      width: lineArrow.width,
+                                                      color: lineArrow.color)
+            // We know for sure that LineArrowShapeLayer is not nil since it was just instantiated
+            layer.addSublayer(lineArrowShapeLayer!)
+        }
+
         
         // Inserts the blur effect view below the current view and adds autolayout constraints that fill in the superview
-        if shouldBlurBackground {
+        if shouldBlurBackground, let blurEffectView = blurEffectView {
             superView.insertSubview(blurEffectView, belowSubview: self)
             blurEffectView.alpha = currentState == .open ? 1.0 : 0.0
             
@@ -107,7 +162,7 @@ public class DrawerView: UIView {
                 blurEffectView.bottomAnchor.constraint(equalTo: superView.bottomAnchor)
                 ])
         }
-        
+     
         backgroundColor = .white
         layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         layer.shadowColor = UIColor.black.cgColor
@@ -136,42 +191,17 @@ public class DrawerView: UIView {
     
     // MARK: - Overrides
     
-    public override func updateConstraints() {
-        super.updateConstraints()
-        
-        guard let superview = self.superview else { return }
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-        
-        bottomConstraint = bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: currentState == .closed ? visibleHeight : 0.0)
-        bottomConstraint.isActive = true
-        
-        customHeightAnchor = heightAnchor.constraint(equalToConstant: bottomSpacing)
-        customHeightAnchor.isActive = true
-    }
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
-        debugPrint(#function)
-        
-        if sholdRecalculateConstraints {
-            guard let superview = self.superview else { return }
-            let newHeight = superview.bounds.height - bottomSpacing
-            debugPrint("new height: ", newHeight)
-            
-            visibleHeight = newHeight - 80
-            bottomConstraint.constant = visibleHeight
-            customHeightAnchor.constant = newHeight
-            superview.layoutIfNeeded()
-            
-            sholdRecalculateConstraints = false
-        }
+        resolveLayoutChanges()
     }
     
-    
     // MARK: - Methods
+    
+    public func change(state: DrawerView.State, shouldAnimate: Bool = true) {
+        let animationDuration = shouldAnimate ? self.animationDuration : 0.0
+        animateTransitionIfNeeded(to: state, duration: animationDuration)
+    }
     
     @objc private func orientationDidChange(notification: Notification) {
         if closeOnRotation {
@@ -185,19 +215,23 @@ public class DrawerView: UIView {
     private func animateTransitionIfNeeded(to state: State, duration: TimeInterval) {
         guard runningAnimators.isEmpty else { return }
         
-        let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1.0, animations: {
+        let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: animationDumpingRatio, animations: {
             switch state {
             case .open:
                 self.bottomConstraint.constant = 0
                 self.layer.cornerRadius = self.cornerRadius
                 
-                if self.shouldBlurBackground { self.blurEffectView.alpha = 1.0 }
+                if self.shouldBlurBackground { self.blurEffectView?.alpha = 1.0 }
             case .closed:
                 self.bottomConstraint.constant = self.visibleHeight
                 self.layer.cornerRadius = 0.0
-                if self.shouldBlurBackground { self.blurEffectView.alpha = 0.0 }
+                if self.shouldBlurBackground { self.blurEffectView?.alpha = 0.0 }
             }
+            
+            self.titleLabelAnimator?.animate(for: state)
+            self.lineArrowShapeLayer?.animate(for: state)
             self.animationClosure(state)
+            
             self.superview?.layoutIfNeeded()
         })
         
@@ -216,6 +250,8 @@ public class DrawerView: UIView {
             case .closed:
                 self.bottomConstraint.constant = self.visibleHeight
             }
+            
+            self.lineArrowShapeLayer?.completeAnimation(for: self.currentState)
             self.completionClosure(self.currentState)
             
             self.runningAnimators.removeAll()
@@ -225,12 +261,21 @@ public class DrawerView: UIView {
         runningAnimators += [transitionAnimator]
     }
     
-    @objc private func drawerViewGestureRecognizerAction(recognizer: UITapGestureRecognizer) {
+    @objc private func drawerViewGestureTapped(recognizer: UITapGestureRecognizer) {
         let state = currentState.opposite
         animateTransitionIfNeeded(to: state, duration: animationDuration)
     }
     
-    @objc private func popupViewPanned(recognizer: UIPanGestureRecognizer) {
+    @objc private func drawerViewGesturePanned(recognizer: UIPanGestureRecognizer) {
+        
+        // Discard all gestures that are propagated from the child views
+        let tapLocation = recognizer.location(in: self)
+        let containsLocationPoint = self.layer.presentation()?.frame.contains(tapLocation)
+        
+        if let containsLocationPoint = containsLocationPoint, containsLocationPoint, !closeOnChildViewTaps {
+            return
+        }
+        
         switch recognizer.state {
         case .began:
             animateTransitionIfNeeded(to: currentState.opposite, duration: animationDuration)
@@ -286,14 +331,43 @@ public class DrawerView: UIView {
         default: ()
         }
     }
+    
+  
 }
 
-// MARK: - DrawerView.State extension
-extension DrawerView.State {
-    var opposite: DrawerView.State {
-        switch self {
-        case .open: return .closed
-        case .closed: return .open
+private extension DrawerView {
+    
+    private func setupConstraints() {
+        guard let superview = self.superview else { return }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        
+        bottomConstraint = bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: currentState == .closed ? visibleHeight : 0.0)
+        bottomConstraint.isActive = true
+        
+        customHeightAnchor = heightAnchor.constraint(equalToConstant: bottomSpacing)
+        customHeightAnchor.isActive = true
+    }
+    
+    private func resolveLayoutChanges() {
+        if sholdRecalculateConstraints {
+            guard let superview = self.superview else { return }
+            let newHeight = superview.bounds.height - bottomSpacing
+            
+            visibleHeight = newHeight - closedHeight
+            bottomConstraint.constant = visibleHeight
+            customHeightAnchor.constant = newHeight
+            superview.layoutIfNeeded()
+            
+            if lineArrowShapeLayer != nil {
+                // Update the bounds of the list arrow shape layer view
+                lineArrowShapeLayer?.calculateBounds(from: bounds)
+                lineArrowShapeLayer?.update()
+            }
+            
+            sholdRecalculateConstraints = false
         }
     }
 }
