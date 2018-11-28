@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A917125821AE65A40091AFF5 /* drawer_view.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95CFFA821AC36CD008B0E8E /* drawer_view.framework */; };
+		A917125A21AEC0F30091AFF5 /* LineArrowShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */; };
+		A917125C21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */; };
+		A917125E21AEC1450091AFF5 /* DrawerView.State+Opposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */; };
 		A95CFFAD21AC36CD008B0E8E /* drawer_view.h in Headers */ = {isa = PBXBuildFile; fileRef = A95CFFAB21AC36CD008B0E8E /* drawer_view.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */; };
 		A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB521AC3706008B0E8E /* DrawerView.swift */; };
@@ -19,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineArrowShapeLayer.swift; sourceTree = "<group>"; };
+		A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerView.BlurStyle+Convert.swift"; sourceTree = "<group>"; };
+		A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerView.State+Opposite.swift"; sourceTree = "<group>"; };
 		A95CFFA821AC36CD008B0E8E /* drawer_view.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = drawer_view.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95CFFAB21AC36CD008B0E8E /* drawer_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawer_view.h; sourceTree = "<group>"; };
 		A95CFFAC21AC36CD008B0E8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,12 +53,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A917125821AE65A40091AFF5 /* drawer_view.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A917125721AE65A40091AFF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A95CFF9E21AC36CD008B0E8E = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +74,7 @@
 				A95CFFAA21AC36CD008B0E8E /* drawer-view */,
 				A95CFFBE21AC37A1008B0E8E /* demo */,
 				A95CFFA921AC36CD008B0E8E /* Products */,
+				A917125721AE65A40091AFF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +94,9 @@
 				A95CFFAC21AC36CD008B0E8E /* Info.plist */,
 				A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */,
 				A95CFFB521AC3706008B0E8E /* DrawerView.swift */,
+				A917125921AEC0F30091AFF5 /* LineArrowShapeLayer.swift */,
+				A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */,
+				A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */,
 			);
 			path = "drawer-view";
 			sourceTree = "<group>";
@@ -208,8 +227,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A917125A21AEC0F30091AFF5 /* LineArrowShapeLayer.swift in Sources */,
+				A917125C21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift in Sources */,
 				A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */,
 				A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */,
+				A917125E21AEC1450091AFF5 /* DrawerView.State+Opposite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
