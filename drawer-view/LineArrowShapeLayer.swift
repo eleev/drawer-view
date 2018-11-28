@@ -48,6 +48,10 @@ class LineArrowShapeLayer: CAShapeLayer {
         animateBezierPath(to: state)
     }
     
+    func calculateBounds(from bounds: CGRect) {
+        targetBounds = CGRect(x: (bounds.width / 2) - (width / 2), y: bounds.minY + height * 2, width: width, height: height)
+    }
+    
     private func animateBezierPath(to state: DrawerView.State) {
         lastState = state
         
@@ -79,10 +83,6 @@ class LineArrowShapeLayer: CAShapeLayer {
     }
     
     private func calculateOpened(controlPoint: CGPoint) -> CGPoint {
-        return CGPoint(x: controlPoint.x, y: controlPoint.y * 1.75)
-    }
-    
-    func calculateBounds(from bounds: CGRect) {
-        targetBounds = CGRect(x: (bounds.width / 2) - (width / 2), y: bounds.minY + height * 2, width: width, height: height)
+        return CGPoint(x: controlPoint.x, y: controlPoint.y * 1.5)
     }
 }
