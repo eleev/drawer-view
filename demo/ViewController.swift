@@ -20,11 +20,22 @@ class ViewController: UIViewController {
         drawerView = DrawerView(bottomSpacing: 200,
                                 closedHeight: 80,
                                 blurStyle: .none,
+                                lineArrow: nil,
                                 superView: view)
         
 //        drawerView.closeOnRotation = true
 //        drawerView.change(state: .open, shouldAnimate: true)
 //        drawerView.closeOnChildViewTaps = true
+//        drawerView.animationClosure
+//        drawerView.completionClosure
+//        drawerView.onStateChangeClosure
+//        drawerView.cornerRadius = 60
+//        drawerView.animationDuration = 1.5
+//        drawerView.animationDampingRatio = 1.0
+//        drawerView.shadowRadius
+//        drawerView.shadowOpacity
+
+        return ()
         
         drawerView.titleLabelAnimator = DefaultTitleLabelAnimator(text: "Title Label Experiment")
         
