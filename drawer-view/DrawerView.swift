@@ -45,7 +45,7 @@ public class DrawerView: UIView {
     /// The component will change its state to .closed when child views are interacted
     @IBInspectable public var closeOnChildViewTaps              = false
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
-    @IBInspectable public var animationDumpingRatio: CGFloat    = 1.0
+    @IBInspectable public var animationDampingRatio: CGFloat    = 1.0
     @IBInspectable public var cornerRadius: CGFloat             = 40.0
     @IBInspectable public var shadowOpacity: Float = 0.15 {
         didSet {
@@ -215,7 +215,7 @@ public class DrawerView: UIView {
     private func animateTransitionIfNeeded(to state: State, duration: TimeInterval) {
         guard runningAnimators.isEmpty else { return }
         
-        let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: animationDumpingRatio, animations: {
+        let transitionAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: animationDampingRatio, animations: {
             switch state {
             case .open:
                 self.bottomConstraint.constant = 0
