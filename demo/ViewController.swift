@@ -19,8 +19,7 @@ class ViewController: UIViewController {
         
         drawerView = DrawerView(bottomSpacing: 200,
                                 closedHeight: 80,
-                                blurStyle: .none,
-                                lineArrow: nil,
+                                blurStyle: .extraLight,
                                 superView: view)
         
 //        drawerView.closeOnRotation = true
@@ -35,26 +34,30 @@ class ViewController: UIViewController {
 //        drawerView.shadowRadius
 //        drawerView.shadowOpacity
 
-        return ()
+//        return ()
         
-        drawerView.titleLabelAnimator = DefaultTitleLabelAnimator(text: "Title Label Experiment")
+        drawerView.titleLabelAnimator = DefaultTitleLabelAnimator(text: "Title Label")
         
-        let closeButton = UIButton(type: .system)
-        drawerView.addSubview(closeButton)
-        
-        closeButton.backgroundColor = UIColor.init(white: 1.0, alpha: 0.5)
-        closeButton.setTitleColor(.black, for: .normal)
-        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        closeButton.setTitle("Close", for: .normal)
-        
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            closeButton.centerXAnchor.constraint(equalTo: (drawerView?.centerXAnchor)!, constant: 0.0),
-            closeButton.centerYAnchor.constraint(equalTo: (drawerView?.centerYAnchor)!, constant: 0.0)
-            ])
-        
-        debugPrint("DrawerView subviews: ", drawerView.subviews)
+//        let closeButton = UIButton(type: .system)
+//        drawerView.addSubview(closeButton)
+//
+//        closeButton.backgroundColor = UIColor.init(white: 1.0, alpha: 0.5)
+//        closeButton.setTitleColor(.black, for: .normal)
+//        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+//        closeButton.setTitle("Close", for: .normal)
+//
+//        closeButton.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            closeButton.centerXAnchor.constraint(equalTo: (drawerView?.centerXAnchor)!, constant: 0.0),
+//            closeButton.centerYAnchor.constraint(equalTo: (drawerView?.centerYAnchor)!, constant: 0.0)
+//            ])
+//
+//        debugPrint("DrawerView subviews: ", drawerView.subviews)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
    
 }
