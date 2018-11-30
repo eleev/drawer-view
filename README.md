@@ -25,6 +25,7 @@ pod 'drawer-view', '~> 1.0.0'
 You can always use `copy-paste` the sources method 😄. Or you can compile the framework and include it with your project.
 
 # 📺 Demo
+Please wait while the `.gif` files are loading... (they are about `25Mb`)
 
 <p float="left">
   <img src="assets/drawer-view demo 01.gif" width="285" />
