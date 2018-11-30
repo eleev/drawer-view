@@ -3,6 +3,7 @@
 [![Platforms](https://img.shields.io/badge/platform-iOS-yellow.svg)]()
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)]()
 [![Documentation](https://img.shields.io/badge/docs-100%25-magenta.svg)]()
+[![Autolayout](https://img.shields.io/badge/autolayout-enabled-blue.svg)]()
 [![CocoaPod](https://img.shields.io/badge/pod-1.0.0-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
@@ -68,7 +69,7 @@ You can specify `blur` effect and its type. It will be animated alongside with t
 let _ = DrawerView(blurStyle: .light, superView: view)
 ```
 
-By default the `DrawerView` will include a visual indicator called `LineArrow`. `LineArrow` is an indicator that decorates the view and helps a user with interation. You can change the properties of the indicator by setting its `height`, `width` and `color`:
+By default the `DrawerView` will include a visual indicator called `LineArrow`. `LineArrow` is an indicator that decorates the view and helps a user with interaction. You can change the properties of the indicator by setting its `height`, `width` and `color`:
 ```swift
 let _ = DrawerView(lineArrow: (height: 8, width: 82, color: .black), superView: view)
 // Or you can set `nil` in order to turn the indicator off
