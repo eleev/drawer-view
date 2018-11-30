@@ -27,17 +27,14 @@ You can always use `copy-paste` the sources method 😄. Or you can compile the 
 # 📺 Demo
 
 <p float="left">
-  <img src="assets/drawer-view demo 01.gif" width="200" />
-  <img src="assets/drawer-view demo 02.gif" width="200" /> 
-  <img src="assets/drawer-view demo 03.gif" width="200" />
+  <img src="assets/drawer-view demo 01.gif" width="285" />
+  <img src="assets/drawer-view demo 02.gif" width="285" /> 
+  <img src="assets/drawer-view demo 03.gif" width="285" />
 </p>
 
-<!-- 
-<a href="url"><img src="assets/drawer-view demo 01.gif" align="left" width="200" ></a>
-<a href="url"><img src="assets/drawer-view demo 02.gif" align="center" width="200" ></a>
-<a href="url"><img src="assets/drawer-view demo 03.gif" align="left" width="200" ></a>
-<a href="url"><img src="assets/drawer-view demo 04.gif" align="center" width="700" ></a>
--->
+<p align="center">
+    <img src="assets/drawer-view demo 04.gif" alt="Drawing"/>
+</p>
 
 # 🍱 Features
 
