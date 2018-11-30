@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        drawerView = DrawerView(bottomSpacing: 200,
+        drawerView = DrawerView(topLayoutGuidePadding: 200,
                                 closedHeight: 80,
                                 blurStyle: .extraLight,
                                 superView: view)

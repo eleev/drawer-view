@@ -28,7 +28,7 @@ public class DrawerView: UIView {
     
     // MARK: - Public properties
     
-    public let bottomSpacing: CGFloat
+    public let topLayoutGuidePadding: CGFloat
     public let closedHeight: CGFloat
     public private(set) var visibleHeight: CGFloat
     public let blurStyle: BlurStyle
@@ -122,17 +122,17 @@ public class DrawerView: UIView {
     // MARK: - Initializers
     
     /// A designated initialier for DrawerView. Use initializer to create a new instnace of a DrawerView. Note that the view will add itself to the super view and must not do that manually. A typical use-case of this class it to instantiate a variable or property and optionally use closures to animate UIKit related contnet alongside with the DrawerView.
-    public init(bottomSpacing: CGFloat = 100,
+    public init(topLayoutGuidePadding: CGFloat = 100,
                 closedHeight: CGFloat = 80,
                 blurStyle: BlurStyle = .extraLight,
                 lineArrow: (height: CGFloat, width: CGFloat, color: UIColor)? = (8, 100, .lightGray),
                 superView: UIView) {
         
-        self.bottomSpacing = bottomSpacing
+        self.topLayoutGuidePadding = topLayoutGuidePadding
         self.closedHeight = closedHeight
         self.shouldBlurBackground = blurStyle != .none
         self.blurStyle = blurStyle
-        self.visibleHeight = (superView.bounds.height - bottomSpacing) - closedHeight
+        self.visibleHeight = (superView.bounds.height - topLayoutGuidePadding) - closedHeight
         
         super.init(frame: .zero)
         
@@ -207,7 +207,7 @@ public class DrawerView: UIView {
         if closeOnRotation {
             animateTransitionIfNeeded(to: .closed, duration: animationDuration)
         } else if currentState == .open {
-            animateTransitionIfNeeded(to: .open, duration:   animationDuration)
+            animateTransitionIfNeeded(to: .open, duration: animationDuration)
         }
         sholdRecalculateConstraints = true
     }
@@ -347,14 +347,14 @@ private extension DrawerView {
         bottomConstraint = bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: currentState == .closed ? visibleHeight : 0.0)
         bottomConstraint.isActive = true
         
-        customHeightAnchor = heightAnchor.constraint(equalToConstant: bottomSpacing)
+        customHeightAnchor = heightAnchor.constraint(equalToConstant: topLayoutGuidePadding)
         customHeightAnchor.isActive = true
     }
     
     private func resolveLayoutChanges() {
         if sholdRecalculateConstraints {
             guard let superview = self.superview else { return }
-            let newHeight = superview.bounds.height - bottomSpacing
+            let newHeight = superview.bounds.height - topLayoutGuidePadding
             
             visibleHeight = newHeight - closedHeight
             bottomConstraint.constant = visibleHeight
