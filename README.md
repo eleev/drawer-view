@@ -4,7 +4,7 @@
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)]()
 [![Documentation](https://img.shields.io/badge/docs-100%25-magenta.svg)]()
 [![Autolayout](https://img.shields.io/badge/autolayout-enabled-blue.svg)]()
-[![CocoaPod](https://img.shields.io/badge/pod-1.0.0-lightblue.svg)]()
+[![CocoaPod](https://img.shields.io/badge/pod-1.0.1-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
 **Last Update: 30/November/2018.**
@@ -19,7 +19,7 @@
 `drawer-view` is availabe via `CocoaPods`
 
 ```
-pod 'drawer-view', '~> 1.0.0' 
+pod 'drawer-view', '~> 1.0.1' 
 ```
 ## Manual
 You can always use `copy-paste` the sources method 😄. Or you can compile the framework and include it with your project.
