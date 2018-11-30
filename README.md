@@ -27,37 +27,19 @@ You can always use `copy-paste` the sources method 😄. Or you can compile the 
 # 📺 Demo
 
 <p align="left">
-    <img src="assets/drawer-view demo 01.gif" alt="Drawing" style="width: 200px;"/>
-
-	<p align="left">
-    	<e>Drawer View with animated title label and extra light background blur 		effect.</e>
-	</p>
+    <img src="assets/drawer-view demo 01.gif" alt="Drawing" style="width: 100px;"/>
 </p>
 
 <p align="right">
-    <img src="assets/drawer-view demo 02.gif" alt="Drawing" style="width: 200px;"/>
-
-    <p align="right">
-    	<e>Drawer View with dark background blur effect, without title label.</e>
-	</p>
+    <img src="assets/drawer-view demo 02.gif" alt="Drawing" style="width: 100px;"/>
 </p>
-
 
 <p align="left">
-    <img src="assets/drawer-view demo 03.gif" alt="Drawing" style="width: 200px;"/>
-    
-    <p align="left">
-    	<e>Drawer View with light blur effect, without title label.		effect</e>
-	</p>
-</p>
-
+    <img src="assets/drawer-view demo 03.gif" alt="Drawing" style="width: 100px;"/>
+<p>
 
 <p align="center">
-    <img src="assets/drawer-view demo 04.gif" alt="Drawing" style="width: 600px;"/>
-
-    <p align="center">
-    	<e>Drawer View autolayout demonstration on iPad Pro 10,5 inch (iOS 12.1)</e>
-	</p>
+    <img src="assets/drawer-view demo 04.gif" alt="Drawing" style="width: 300px;"/>
 </p>
 
 
