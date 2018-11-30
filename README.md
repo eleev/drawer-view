@@ -24,7 +24,41 @@ pod 'drawer-view', '~> 1.0.0'
 ## Manual
 You can always use `copy-paste` the sources method 😄. Or you can compile the framework and include it with your project.
 
-# 📺 Example
+# 📺 Demo
+
+<p align="left">
+    <img src="assets/drawer-view demo 01.gif" alt="Drawing" style="width: 200px;"/>
+
+	<p align="left">
+    	<e>Drawer View with animated title label and extra light background blur 		effect.</e>
+	</p>
+</p>
+
+<p align="right">
+    <img src="assets/drawer-view demo 02.gif" alt="Drawing" style="width: 200px;"/>
+
+    <p align="right">
+    	<e>Drawer View with dark background blur effect, without title label.</e>
+	</p>
+</p>
+
+
+<p align="left">
+    <img src="assets/drawer-view demo 03.gif" alt="Drawing" style="width: 200px;"/>
+    
+    <p align="left">
+    	<e>Drawer View with light blur effect, without title label.		effect</e>
+	</p>
+</p>
+
+
+<p align="center">
+    <img src="assets/drawer-view demo 04.gif" alt="Drawing" style="width: 600px;"/>
+
+    <p align="center">
+    	<e>Drawer View autolayout demonstration on iPad Pro 10,5 inch (iOS 12.1)</e>
+	</p>
+</p>
 
 
 # 🍱 Features
@@ -40,7 +74,7 @@ You can always use `copy-paste` the sources method 😄. Or you can compile the 
 - **Autolayout**
   - You don't need to do anything related to autolayout - the component properly handles all the changes. The only thing you need to do is to add your `UI` components and make sure that aulayout constraints are properly setup for them.  
 
-# 📚 Code Examples
+# 📚 Code Samples
 
 ## Instantiation
 
