@@ -1,10 +1,9 @@
 # drawer-view [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-[![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS-yellow.svg)]()
+[![Platforms](https://img.shields.io/badge/platform-iOS-yellow.svg)]()
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)]()
-[![Coverage](https://img.shields.io/badge/coverage-32%2C65%25-red.svg)]()
 [![Documentation](https://img.shields.io/badge/docs-100%25-magenta.svg)]()
-[![CocoaPod](https://img.shields.io/badge/pod-1.6.0-lightblue.svg)]()
+[![CocoaPod](https://img.shields.io/badge/pod-1.0.0-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
 **Last Update: 30/November/2018.**
