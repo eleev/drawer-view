@@ -134,4 +134,4 @@ drawerView.shadowOpacity = 0.132
 [Astemir Eleev](https://github.com/jVirus)
 
 # 🔖 Licence
-The project is available under [MIT licence](https://github.com/jVirus/drawer-voew/blob/master/LICENSE)
+The project is available under [MIT licence](https://github.com/jVirus/drawer-view/master/LICENSE)
