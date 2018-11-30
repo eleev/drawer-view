@@ -82,7 +82,7 @@ s.ios.deployment_target = "11.0"
 #
 
 # "#{s.version}"
-s.source       = { :git => "https://github.com/jVirus/extensions-kit.git", :tag => s.version.to_s }
+s.source       = { :git => "https://github.com/jVirus/drawer-view.git", :tag => s.version.to_s }
 
 
 # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
