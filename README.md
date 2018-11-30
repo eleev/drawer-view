@@ -12,7 +12,7 @@
 ![](logo-drawer_view.png)
 
 # ✍️ About
-📤 Drawer View is a custom UI component replication of Apple's Apple Music player and Shorcuts `components` view (also can be seen in `Maps` app).
+📤 Drawer View is a custom UI component replication of Apple's Apple Music player and Shortcuts `components` view (also can be seen in `Maps` app).
 
 # 🏗 Installation
 ## CocoaPods
