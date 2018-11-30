@@ -7,7 +7,7 @@
 [![CocoaPod](https://img.shields.io/badge/pod-1.6.0-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 29/November/2018.**
+**Last Update: 30/November/2018.**
 
 ![](logo-drawer_view.png)
 
@@ -83,9 +83,9 @@ The most simple instantiation: you only need to provide the `superview`:
 let _ = DrawerView(superView: view)
 ```
 
-You can specify how much space will be between top anchor of the `DrawerView` and the `superview` by setting `bottomSpacing` property and how tall the `DrawerView` will be when it is closed by setting `closedHeight` property:
+You can specify how much space will be between top anchor of the `DrawerView` and the `superview` by setting `topLayoutGuidePadding` property and how tall the `DrawerView` will be when it is closed by setting `closedHeight` property:
 ```swift
-let _ = DrawerView(bottomSpacing: 100, closedHeight: 82, superView: view)
+let _ = DrawerView(topLayoutGuidePadding: 100, closedHeight: 82, superView: view)
 ```
 
 You can specify `blur` effect and its type. It will be animated alongside with the drawer view. There are several styles for `blur`:
