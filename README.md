@@ -7,7 +7,7 @@
 [![CocoaPod](https://img.shields.io/badge/pod-1.0.1-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 19/December/2018.**
+**Last Update: 08/January/2019.**
 
 ![](logo-drawer_view.png)
 
@@ -77,6 +77,8 @@ let _ = DrawerView(lineArrow: (height: 8, width: 82, color: .black), superView: 
 // Or you can set `nil` in order to turn the indicator off
 ```
 
+## Properties & Methods
+
 You can change the behavior of the component when a device is rotated. By default the `DrawerView` will not be closed when a device is rotated. However, you can change this behavior:
 ```swift
 drawerView.closeOnRotation = true
@@ -122,6 +124,8 @@ drawerView.onStateChangeClosure = { state in
   state == .closed ? showDialog() : doNothing()
 }
 ```
+
+## Other settable properties
 
 Also there are many other properties that be customized:
 ```swift
