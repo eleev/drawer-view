@@ -2,12 +2,11 @@
 
 [![Platforms](https://img.shields.io/badge/platform-iOS-yellow.svg)]()
 [![Language](https://img.shields.io/badge/language-Swift-orange.svg)]()
-[![Documentation](https://img.shields.io/badge/docs-100%25-magenta.svg)]()
 [![Autolayout](https://img.shields.io/badge/autolayout-enabled-blue.svg)]()
 [![CocoaPod](https://img.shields.io/badge/pod-1.0.1-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 21/January/2019.**
+**Last Update: 14/March/2019.**
 
 ![](logo-drawer_view.png)
 
