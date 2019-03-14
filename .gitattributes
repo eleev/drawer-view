@@ -1,0 +1,6 @@
+*.podspec linguist-detectable=false
+*.ruby linguist-detectable=false
+*.ru linguist-detectable=false
+*.spec linguist-detectable=false
+*.rbx linguist-detectable=false
+*.rabl linguist-detectable=false
