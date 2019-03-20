@@ -35,7 +35,7 @@ public class DrawerView: UIView {
     
     public private(set) var currentState: State = .closed {
         didSet {
-            if givesHapticFeedback {
+            if givesHapticFeedback {
                 hapticFeedback.impactOccurred()
             }
             onStateChangeClosure(currentState)
@@ -47,7 +47,7 @@ public class DrawerView: UIView {
     /// The component will change its state to .closed when child views are interacted
     @IBInspectable public var closeOnChildViewTaps              = false
     /// The component will change its state to .closed when a tap occurs out of itself
-    @IBInspectable public var closeOnTapOutside                 = false
+    @IBInspectable public var closeOnBlurTapped                 = false
     /// The component will give the user haptic feedback at after state change
     @IBInspectable public var givesHapticFeedback               = true
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
@@ -289,7 +289,7 @@ public class DrawerView: UIView {
     }
     
     @objc private func drawerViewGestureTappedOut(recognizer: UITapGestureRecognizer) {
-        if closeOnTapOutside {
+        if closeOnBlurTapped {
             animateTransitionIfNeeded(to: .closed, duration: animationDuration)
         }
     }
