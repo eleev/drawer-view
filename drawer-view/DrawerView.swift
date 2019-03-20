@@ -193,6 +193,20 @@ public class DrawerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // In some cases (seems to depend on the view (controller) hierarchy)
+    // on has to call this function BEFORE the first animation to make it look right.
+    // Otherwise it may look like the component is expanding from the origin of its
+    // superview instead of appearing from the bottom.
+    public func setInitialFrame(_ frame: CGRect) {
+        self.blurEffectView?.frame = frame
+        
+        var initialFrame = frame
+        initialFrame.origin.y = initialFrame.size.height
+        initialFrame.size.height = 0
+        
+        self.frame = initialFrame
+    }
+    
     deinit {
         removeGestureRecognizer(tapGesture)
         removeGestureRecognizer(panGesture)
