@@ -35,7 +35,9 @@ public class DrawerView: UIView {
     
     public private(set) var currentState: State = .closed {
         didSet {
-            hapticFeedback.impactOccurred()
+            if givesHapticFeedback {
+                hapticFeedback.impactOccurred()
+            }
             onStateChangeClosure(currentState)
         }
     }
@@ -46,6 +48,8 @@ public class DrawerView: UIView {
     @IBInspectable public var closeOnChildViewTaps              = false
     /// The component will change its state to .closed when a tap occurs out of itself
     @IBInspectable public var closeOnTapOutside                 = false
+    /// The component will give the user haptic feedback at after state change
+    @IBInspectable public var givesHapticFeedback               = true
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
     @IBInspectable public var animationDampingRatio: CGFloat    = 1.0
     @IBInspectable public var cornerRadius: CGFloat             = 40.0
