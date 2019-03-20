@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 #
 
 s.name         = "drawer-view"
-s.version      = "1.0.1"
+s.version      = "1.0.2"
 s.summary      = "📤 Drawer View is a custom UI component replication of Apple's Apple Music player and Shortcuts components view"
 
 # This description is used to generate tags and improve search results.
