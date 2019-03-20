@@ -44,6 +44,8 @@ public class DrawerView: UIView {
     @IBInspectable public var closeOnRotation                   = false
     /// The component will change its state to .closed when child views are interacted
     @IBInspectable public var closeOnChildViewTaps              = false
+    /// The component will change its state to .closed when a tap occurs out of itself
+    @IBInspectable public var closeOnTapOutside                 = false
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
     @IBInspectable public var animationDampingRatio: CGFloat    = 1.0
     @IBInspectable public var cornerRadius: CGFloat             = 40.0
@@ -99,7 +101,14 @@ public class DrawerView: UIView {
         }
         let blurEffect = UIBlurEffect(style: style)
         let effectView = UIVisualEffectView(effect: blurEffect)
+        effectView.addGestureRecognizer(outTapGesture)
         return effectView
+    }()
+    
+    private lazy var outTapGesture: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(drawerViewGestureTappedOut(recognizer:)))
+        return recognizer
     }()
     
     private lazy var tapGesture: UITapGestureRecognizer = {
@@ -259,6 +268,12 @@ public class DrawerView: UIView {
         
         transitionAnimator.startAnimation()
         runningAnimators += [transitionAnimator]
+    }
+    
+    @objc private func drawerViewGestureTappedOut(recognizer: UITapGestureRecognizer) {
+        if closeOnTapOutside {
+            animateTransitionIfNeeded(to: .closed, duration: animationDuration)
+        }
     }
     
     @objc private func drawerViewGestureTapped(recognizer: UITapGestureRecognizer) {
