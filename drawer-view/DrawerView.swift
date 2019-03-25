@@ -46,6 +46,8 @@ public class DrawerView: UIView {
     @IBInspectable public var closeOnRotation                   = false
     /// The component will change its state to .closed when child views are interacted
     @IBInspectable public var closeOnChildViewTaps              = false
+    /// The component will change its state to .closed when the drawer is tapped
+    @IBInspectable public var closeOnDrawerTaps                 = true
     /// The component will change its state to .closed when a tap occurs out of itself
     @IBInspectable public var closeOnBlurTapped                 = false
     /// The component will give the user haptic feedback at after state change
@@ -295,6 +297,7 @@ public class DrawerView: UIView {
     }
     
     @objc private func drawerViewGestureTapped(recognizer: UITapGestureRecognizer) {
+        guard closeOnDrawerTaps else { return }
         let state = currentState.opposite
         animateTransitionIfNeeded(to: state, duration: animationDuration)
     }
