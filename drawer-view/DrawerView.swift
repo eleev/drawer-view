@@ -193,11 +193,12 @@ public class DrawerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // In some cases (seems to depend on the view (controller) hierarchy)
-    // on has to call this function BEFORE the first animation to make it look right.
-    // Otherwise it may look like the component is expanding from the origin of its
-    // superview instead of appearing from the bottom.
-    public func setInitialFrame(_ frame: CGRect) {
+    //
+    
+    /// In some cases (seems to depend on the view (controller) hierarchy) on has to call this function BEFORE the first animation to make it look right.
+    ///
+    /// Otherwise it may look like the component is expanding from the origin of its superview instead of appearing from the bottom.
+    public func setInitial(frame: CGRect) {
         self.blurEffectView?.frame = frame
         
         var initialFrame = frame
@@ -289,9 +290,8 @@ public class DrawerView: UIView {
     }
     
     @objc private func drawerViewGestureTappedOut(recognizer: UITapGestureRecognizer) {
-        if closeOnBlurTapped {
-            animateTransitionIfNeeded(to: .closed, duration: animationDuration)
-        }
+        guard closeOnBlurTapped else { return }
+        animateTransitionIfNeeded(to: .closed, duration: animationDuration)
     }
     
     @objc private func drawerViewGestureTapped(recognizer: UITapGestureRecognizer) {
@@ -385,22 +385,20 @@ private extension DrawerView {
     }
     
     private func resolveLayoutChanges() {
-        if sholdRecalculateConstraints {
-            guard let superview = self.superview else { return }
-            let newHeight = superview.bounds.height - topLayoutGuidePadding
-            
-            visibleHeight = newHeight - closedHeight
-            bottomConstraint.constant = visibleHeight
-            customHeightAnchor.constant = newHeight
-            superview.layoutIfNeeded()
-            
-            if lineArrowShapeLayer != nil {
-                // Update the bounds of the list arrow shape layer view
-                lineArrowShapeLayer?.calculateBounds(from: bounds)
-                lineArrowShapeLayer?.update()
-            }
-            
-            sholdRecalculateConstraints = false
+        guard sholdRecalculateConstraints, let superview = self.superview else { return }
+        let newHeight = superview.bounds.height - topLayoutGuidePadding
+        
+        visibleHeight = newHeight - closedHeight
+        bottomConstraint.constant = visibleHeight
+        customHeightAnchor.constant = newHeight
+        superview.layoutIfNeeded()
+        
+        if lineArrowShapeLayer != nil {
+            // Update the bounds of the list arrow shape layer view
+            lineArrowShapeLayer?.calculateBounds(from: bounds)
+            lineArrowShapeLayer?.update()
         }
+        
+        sholdRecalculateConstraints = false
     }
 }
