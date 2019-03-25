@@ -35,7 +35,9 @@ public class DrawerView: UIView {
     
     public private(set) var currentState: State = .closed {
         didSet {
-            hapticFeedback.impactOccurred()
+            if givesHapticFeedback {
+                hapticFeedback.impactOccurred()
+            }
             onStateChangeClosure(currentState)
         }
     }
@@ -44,6 +46,10 @@ public class DrawerView: UIView {
     @IBInspectable public var closeOnRotation                   = false
     /// The component will change its state to .closed when child views are interacted
     @IBInspectable public var closeOnChildViewTaps              = false
+    /// The component will change its state to .closed when a tap occurs out of itself
+    @IBInspectable public var closeOnBlurTapped                 = false
+    /// The component will give the user haptic feedback at after state change
+    @IBInspectable public var givesHapticFeedback               = true
     @IBInspectable public var animationDuration: TimeInterval   = 1.5
     @IBInspectable public var animationDampingRatio: CGFloat    = 1.0
     @IBInspectable public var cornerRadius: CGFloat             = 40.0
@@ -99,7 +105,14 @@ public class DrawerView: UIView {
         }
         let blurEffect = UIBlurEffect(style: style)
         let effectView = UIVisualEffectView(effect: blurEffect)
+        effectView.addGestureRecognizer(outTapGesture)
         return effectView
+    }()
+    
+    private lazy var outTapGesture: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(drawerViewGestureTappedOut(recognizer:)))
+        return recognizer
     }()
     
     private lazy var tapGesture: UITapGestureRecognizer = {
@@ -178,6 +191,20 @@ public class DrawerView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // In some cases (seems to depend on the view (controller) hierarchy)
+    // on has to call this function BEFORE the first animation to make it look right.
+    // Otherwise it may look like the component is expanding from the origin of its
+    // superview instead of appearing from the bottom.
+    public func setInitialFrame(_ frame: CGRect) {
+        self.blurEffectView?.frame = frame
+        
+        var initialFrame = frame
+        initialFrame.origin.y = initialFrame.size.height
+        initialFrame.size.height = 0
+        
+        self.frame = initialFrame
     }
     
     deinit {
@@ -259,6 +286,12 @@ public class DrawerView: UIView {
         
         transitionAnimator.startAnimation()
         runningAnimators += [transitionAnimator]
+    }
+    
+    @objc private func drawerViewGestureTappedOut(recognizer: UITapGestureRecognizer) {
+        if closeOnBlurTapped {
+            animateTransitionIfNeeded(to: .closed, duration: animationDuration)
+        }
     }
     
     @objc private func drawerViewGestureTapped(recognizer: UITapGestureRecognizer) {
