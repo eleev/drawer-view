@@ -6,7 +6,7 @@
 [![CocoaPod](https://img.shields.io/badge/pod-1.0.2-lightblue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 25/March/2019.**
+**Last Update: 31/March/2019.**
 
 ![](logo-drawer_view.png)
 
@@ -20,7 +20,7 @@
 `drawer-view` is availabe via `CocoaPods`
 
 ```
-pod 'drawer-view', '~> 1.0.2' 
+pod 'drawer-view', '~> 1.0.3' 
 ```
 ## Manual
 You can always use `copy-paste` the sources method 😄. Or you can compile the framework and include it with your project.
@@ -134,6 +134,7 @@ drawerView.animationDampingRatio = 0.9
 drawerView.shadowRadius = 0.25
 drawerView.shadowOpacity = 0.132
 drawerView.closeOnBlurTapped = true
+drawerView.closeOnDrawerTaps = true
 ```
 
 # 👨‍💻 Author 
