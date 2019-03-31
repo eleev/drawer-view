@@ -138,7 +138,7 @@ s.source_files = "drawer-view/**/*.swift"
 # s.dependency "JSONKit", "~> 1.4"
 
 s.requires_arc = true
-s.pod_target_xcconfig  = { 'SWIFT_VERSION' => '4.2' }
-s.swift_version = "4.2"
+s.pod_target_xcconfig  = { 'SWIFT_VERSION' => '5.0' }
+s.swift_version = "5.0"
 
 end
