@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // DrawerView UI Component. Intended to be a part of an another UIView and present additional view when needed. The view is not @IBDesignable since there is nothing to present (custom) in the interface builder. However, some properties are @IBInspectable, so you are able to adjust them at design time (in case if you use interface builder).
 public class DrawerView: UIView {
     
@@ -272,6 +271,8 @@ public class DrawerView: UIView {
             case .end:
                 self.currentState = state
             case .current: ()
+            @unknown default:
+                fatalError("The unknown case is not handled. Please, review the transition animator and make the appropriate changes.")
             }
             
             switch self.currentState {
@@ -373,7 +374,7 @@ public class DrawerView: UIView {
 
 private extension DrawerView {
     
-    private func setupConstraints() {
+    func setupConstraints() {
         guard let superview = self.superview else { return }
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -387,7 +388,7 @@ private extension DrawerView {
         customHeightAnchor.isActive = true
     }
     
-    private func resolveLayoutChanges() {
+    func resolveLayoutChanges() {
         guard sholdRecalculateConstraints, let superview = self.superview else { return }
         let newHeight = superview.bounds.height - topLayoutGuidePadding
         
