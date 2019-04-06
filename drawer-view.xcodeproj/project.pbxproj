@@ -16,6 +16,7 @@
 		A917126221AEEA490091AFF5 /* TitleLabelAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917126121AEEA490091AFF5 /* TitleLabelAnimator.swift */; };
 		A95C228021AFD67B008E8B39 /* drawer_view.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95CFFA821AC36CD008B0E8E /* drawer_view.framework */; };
 		A95C228121AFD67B008E8B39 /* drawer_view.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95CFFA821AC36CD008B0E8E /* drawer_view.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A95CEB3D225896E700BE8591 /* DrawerViewTouchHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CEB3C225896E700BE8591 /* DrawerViewTouchHandling.swift */; };
 		A95CFFAD21AC36CD008B0E8E /* drawer_view.h in Headers */ = {isa = PBXBuildFile; fileRef = A95CFFAB21AC36CD008B0E8E /* drawer_view.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A95CFFB421AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */; };
 		A95CFFB621AC3706008B0E8E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95CFFB521AC3706008B0E8E /* DrawerView.swift */; };
@@ -61,6 +62,7 @@
 		A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerView.State+Opposite.swift"; sourceTree = "<group>"; };
 		A917125F21AED9830091AFF5 /* DefaultTitleLabelAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTitleLabelAnimator.swift; sourceTree = "<group>"; };
 		A917126121AEEA490091AFF5 /* TitleLabelAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabelAnimator.swift; sourceTree = "<group>"; };
+		A95CEB3C225896E700BE8591 /* DrawerViewTouchHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewTouchHandling.swift; sourceTree = "<group>"; };
 		A95CFFA821AC36CD008B0E8E /* drawer_view.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = drawer_view.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95CFFAB21AC36CD008B0E8E /* drawer_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawer_view.h; sourceTree = "<group>"; };
 		A95CFFAC21AC36CD008B0E8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				A95CFFAB21AC36CD008B0E8E /* drawer_view.h */,
 				A95CFFAC21AC36CD008B0E8E /* Info.plist */,
 				A95CFFB321AC36EF008B0E8E /* ImmediatePanGestureRecognizer.swift */,
+				A95CEB3C225896E700BE8591 /* DrawerViewTouchHandling.swift */,
 				A95CFFB521AC3706008B0E8E /* DrawerView.swift */,
 				A917125B21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift */,
 				A917125D21AEC1450091AFF5 /* DrawerView.State+Opposite.swift */,
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95CEB3D225896E700BE8591 /* DrawerViewTouchHandling.swift in Sources */,
 				A917126221AEEA490091AFF5 /* TitleLabelAnimator.swift in Sources */,
 				A917125A21AEC0F30091AFF5 /* LineArrowShapeLayer.swift in Sources */,
 				A917125C21AEC1230091AFF5 /* DrawerView.BlurStyle+Convert.swift in Sources */,
