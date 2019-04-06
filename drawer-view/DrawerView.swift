@@ -411,16 +411,10 @@ private extension DrawerView {
 
 extension DrawerView : UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        for subView in self.subviews {
-            guard let subView = subView as? DrawerViewTouchHandling else { continue }
-            if subView.interceptsTouch(touch) {
-                return false
-            }
+        for subview in subviews {
+            guard let subview = subview as? DrawerViewTouchHandling else { continue }
+            if subview.drawerViewIntercepts(touch: touch) { return false }
         }
         return true
     }
-}
-
-@objc public protocol DrawerViewTouchHandling {
-    @objc func interceptsTouch(_ touch: UITouch) -> Bool
 }
