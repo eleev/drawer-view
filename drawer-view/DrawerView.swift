@@ -119,12 +119,14 @@ public class DrawerView: UIView {
     private lazy var tapGesture: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
         recognizer.addTarget(self, action: #selector(drawerViewGestureTapped(recognizer:)))
+        recognizer.delegate = self
         return recognizer
     }()
     
     private lazy var panGesture: ImmediatePanGestureRecognizer = {
         let recognizer = ImmediatePanGestureRecognizer()
         recognizer.addTarget(self, action: #selector(drawerViewGesturePanned(recognizer:)))
+        recognizer.delegate = self
         return recognizer
     }()
     
@@ -405,4 +407,20 @@ private extension DrawerView {
         
         sholdRecalculateConstraints = false
     }
+}
+
+extension DrawerView : UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        for subView in self.subviews {
+            guard let subView = subView as? DrawerViewTouchHandling else { continue }
+            if subView.interceptsTouch(touch) {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+@objc public protocol DrawerViewTouchHandling {
+    @objc func interceptsTouch(_ touch: UITouch) -> Bool
 }
