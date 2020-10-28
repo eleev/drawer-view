@@ -1,0 +1,6 @@
+framework module Pods_SideDrawer {
+  umbrella header "Pods-SideDrawer-umbrella.h"
+
+  export *
+  module * { export * }
+}

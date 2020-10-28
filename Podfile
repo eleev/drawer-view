@@ -9,10 +9,10 @@ target 'demo' do
 
 end
 
-target 'drawer-view' do
+target 'SideDrawer' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for drawer-view
+  # Pods for SideDrawerView
 
 end
